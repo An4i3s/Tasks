@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:one_my_tasks/constants/colors.dart';
 import 'package:one_my_tasks/constants/sizes.dart';
+import 'package:one_my_tasks/constants/widgets_styles.dart';
 
 // ignore: camel_case_types
 
@@ -23,12 +24,16 @@ class _myDrawerState extends State<myDrawer> {
 
   var userData;
 
+
    String? username = ' ';
+    String? imageUrl = '';
+
 
    @override
   void initState() {
-    getUserData();
+    
     super.initState();
+    getUserData();
   }
 
  //  String imageUrl = '';
@@ -37,9 +42,18 @@ class _myDrawerState extends State<myDrawer> {
     // print('********* ${userData['username']}');
      setState(() {
         username = userData['username'];
+        imageUrl =  userData['image_url'];
      });
     
   }
+
+//todo da sistemare:
+//todo => username e imageUrl ci mettono qualche secondo prima di caricarsi... usare Future Delay??? Oppure metodo che se isLoading sosituisce con ProgressBar
+//todo => Network Img da questa Exception... ma tanto funziona lo stesso... ;)
+//todo => Network Image non funziona su Chrome/Edge
+// '════════ Exception caught by image resource service ════════════════════════════
+//Invalid argument(s): No host specified in URI file:///'
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,16 +67,17 @@ class _myDrawerState extends State<myDrawer> {
           DrawerHeader(
             child: Column(
             children: [
-            const CircleAvatar(
-               foregroundImage: AssetImage('images/success.png'),
-              //foregroundImage:  NetworkImage(imageUrl),
+             CircleAvatar(
+              
+              backgroundImage:  NetworkImage(imageUrl!),
+              
               ),
               Padding(
-                padding:  EdgeInsets.only(top:  SizeConfig. blockSizeVertical!*1.5),
+                padding:  EdgeInsets.only(top:  SizeConfig.blockSizeVertical!*1.5),
                 child: Text('Ciao ${username!}!'),
               ),
               ListTile(
-                   title:  Text('Exit', style: TextStyle(color: kRed),),
+                   title:  Text('Exit', style: TextStyle(color: kRed, fontWeight: FontWeight.bold),),
                    leading:  Icon(Icons.logout, color: kRed,),
                   onTap: () {
                        FirebaseAuth.instance.signOut();
@@ -72,13 +87,13 @@ class _myDrawerState extends State<myDrawer> {
                         ),
             
           ),
-          const ListTile(
-            title: Text('Elemento 1'),
-            leading: Icon(Icons.abc),
+           ListTile(
+            title:  Text('Gestici Categorie', style: kTextStyle,),
+            leading: Icon(Icons.settings, color: kTxtColor,),
           ),
-          const ListTile(
-            title: Text('Elemento 2'),
-            leading: Icon(Icons.abc),
+           ListTile(
+            title:  Text('Modifica Profilo', style: kTextStyle,),
+            leading: Icon(Icons.image, color: kTxtColor),
           ),
         ],
       ),
