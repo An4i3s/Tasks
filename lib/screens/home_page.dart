@@ -6,6 +6,7 @@ import 'package:one_my_tasks/constants/widgets_styles.dart';
 import 'package:one_my_tasks/data/category_data.dart';
 import 'package:one_my_tasks/models/tasks.dart';
 import 'package:one_my_tasks/widgets/my_bottom_navbar.dart';
+import 'package:one_my_tasks/widgets/my_drawer.dart';
 import 'package:one_my_tasks/widgets/tile_task.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -50,13 +51,18 @@ class _HomePageState extends State<HomePage> {
   //serve?
   //bool staCercando = false;
 
+  SearchController? myController;
+
   var _isLoading = true;
   String? _error;
 
   @override
   void initState() {
     super.initState();
+    myController=SearchController();
+    
     _loadItems();
+    
   }
 
   void _loadItems() async {
@@ -248,35 +254,7 @@ class _HomePageState extends State<HomePage> {
         scrolledUnderElevation: 0,
       ),
       bottomNavigationBar: MyBottomNavBar(selectedIndex: 0),
-      drawer: Drawer(
-        backgroundColor: kGreenAccent,
-        child: ListView(
-          children: const [
-            DrawerHeader(
-              child: Column(
-                children: [
-                  Text('Ciao UTENTE'),
-                  CircleAvatar(
-                    foregroundImage: AssetImage('images/success.png'),
-                  ),
-                  ListTile(
-                    title: Text('Exit'),
-                    leading: Icon(Icons.logout),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Text('Elemento 1'),
-              leading: Icon(Icons.abc),
-            ),
-            ListTile(
-              title: Text('Elemento 2'),
-              leading: Icon(Icons.abc),
-            ),
-          ],
-        ),
-      ),
+      drawer:   myDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -298,13 +276,10 @@ class _HomePageState extends State<HomePage> {
                 //   },
                 //   // onSubmitted: (value) {
                 //   //   setState(() {
-                      
-                //   //     parolaCercata = value;
-                //   //   });
-                //   // },
+             
                 // ),
                 child: SearchAnchor.bar(
-
+                  searchController: myController!,
                   viewConstraints: const BoxConstraints(
                     maxHeight: 300,
                   ),
@@ -320,16 +295,17 @@ class _HomePageState extends State<HomePage> {
                   },
                   textInputAction: TextInputAction.search,
                   
-                   //!da problemi se faccio doppio submit
                   onSubmitted: (value) {
+                    print('***** ${myController!.isOpen}');
                     setState(() {
                       parolaCercata=value;
                       value='';
                       
                     });
 
-                    if(context.mounted){
-                          Navigator.pop(context);
+                    if(context.mounted && myController!.isOpen){
+                      Navigator.pop(context);
+                     
                       }
                     
                   },
@@ -418,3 +394,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
