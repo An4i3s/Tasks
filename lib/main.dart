@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:one_my_tasks/constants/colors.dart';
-import 'package:one_my_tasks/constants/widgets_styles.dart';
 import 'package:one_my_tasks/firebase_options.dart';
 import 'package:one_my_tasks/screens/add_task.dart';
 import 'package:one_my_tasks/screens/auth.dart';

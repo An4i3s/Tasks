@@ -49,11 +49,14 @@ class _AuthScreenState extends State<AuthScreen> {
       setState(() {
        _isAuthenticating = true;
         });
+
+
+      
         if (_isLogin) {
      
-      final userCredentials = await _firebaseAuth.signInWithEmailAndPassword(
+        final userCredentials = await _firebaseAuth.signInWithEmailAndPassword(
           email: _enteredEmail, password: _enteredPassword);
-       } else {
+         } else {
       
         final userCredentials = await _firebaseAuth.createUserWithEmailAndPassword(
           email: _enteredEmail,
@@ -79,6 +82,8 @@ class _AuthScreenState extends State<AuthScreen> {
             SnackBar(content: Text(e.message ?? 'Authentication failed')));
       }
     }
+
+
 
   @override
   Widget build(BuildContext context) {

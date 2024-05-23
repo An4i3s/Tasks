@@ -41,15 +41,10 @@ class _HomePageState extends State<HomePage> {
   List<Tasks> _displayTasks = [];
   List<Tasks> _tasksItems = [];
 
-  // List<Tasks> _todayTasks = [];
-  // List<Tasks> _settimanaTasks = [];
-  // List<Tasks> _meseTasks = [];
-
   Scadenza? filtroScadenza;
   List<Tasks> _searchList = [];
    String? parolaCercata;
-  //serve?
-  //bool staCercando = false;
+
 
   SearchController? myController;
 
@@ -172,18 +167,7 @@ class _HomePageState extends State<HomePage> {
       child: Text('No items added yet'),
     );
 
-    // _displayTasks = switch (filtroScadenza) {
-    //   Scadenza.oggi => _todayTasks,
-    //   Scadenza.settimana => _settimanaTasks,
-    //   Scadenza.mese => _meseTasks,
-    //   null => _tasksItems,
-    //   //_ => _tasksItems,
-    // };
 
-    //todo onSubmit => staCercando = false, , e onTap adesso non prende subito ma bigona fare onSUbmit
-//     if(parolaCercata!=null){
-//  _searchList = _tasksItems.where((element) => element.title.contains(parolaCercata!)).toList();
-//     }
    
 
     _displayTasks = switch (filtroScadenza) {
@@ -197,7 +181,7 @@ class _HomePageState extends State<HomePage> {
           .where((element) => element.scadenza == Scadenza.mese)
           .toList(),
       null => _tasksItems,
-      //_ => _tasksItems,
+      
     };
 
     if (_isLoading) {
