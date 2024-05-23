@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:one_my_tasks/constants/colors.dart';
+import 'package:one_my_tasks/constants/sizes.dart';
 import 'package:one_my_tasks/constants/widgets_styles.dart';
 import 'package:one_my_tasks/data/category_data.dart';
 import 'package:one_my_tasks/models/tasks.dart';
@@ -11,13 +12,6 @@ import 'package:one_my_tasks/widgets/tile_task.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-
-
-/*
-todo: - gestire caso in submit quando parola cercata non esiste (content == circular=) 
-todo  - ??
-todo  - ??
- */
 
 
 
@@ -152,9 +146,7 @@ class _HomePageState extends State<HomePage> {
             item='';
            
             Navigator.pop(context);
-            //controller.closeView(item);
-            //mod fa true a false
-            //staCercando = false;
+           
           });
         },
       );
@@ -163,6 +155,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+   SizeConfig.init(context);
+
+
     Widget content = const Center(
       child: Text('No items added yet'),
     );
@@ -192,23 +188,19 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-//?&& sta cercando?
+
      if(parolaCercata!=null && parolaCercata!.isNotEmpty){
       _displayTasks = _tasksItems.where((element) => element.title.contains(parolaCercata!)).toList();
-     // staCercando=false;
-     // parolaCercata=null;
+
     }
 
-    // if (staCercando) {
-    //   _displayTasks = _searchList;
-    //   staCercando = false;
-    // }
+
 
     if (_displayTasks.isNotEmpty) {
       content = ListView.builder(
         itemCount: _displayTasks.length,
         itemBuilder: (context, index) => Dismissible(
-          direction: DismissDirection.startToEnd,
+          direction: DismissDirection.endToStart,
           onDismissed: (direction) {
             setState(() {
               _removeItem(_tasksItems[index]);
@@ -225,7 +217,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    var size = MediaQuery.of(context).size;
+    //var size = MediaQuery.of(context).size;
 
     return Scaffold(
       extendBody: true,
@@ -243,25 +235,11 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 15, top: 15, right: 15, bottom: 15),
+              padding:  EdgeInsets.symmetric(vertical: SizeConfig.blockSizeVertical!*1.5, horizontal: SizeConfig.blockSizeVertical!*1.5),
               child: SizedBox(
-                width: size.width - 80,
-                height: 45,
-                // child: TextField(
-                //   onChanged: (value) {
-                //     if (mounted) {
-                //       print("********$value");
-                //       setState(() {
-                //         //  _displayTasks = _tasksItems.where((element) => element.title.contains(value)).toList();
-                //         parolaCercata = value;
-                //       });
-                //     }
-                //   },
-                //   // onSubmitted: (value) {
-                //   //   setState(() {
-             
-                // ),
+                width: SizeConfig.blockSizeHorizontal!*80,
+                height: SizeConfig.blockSizeVertical!*7,
+                
                 child: SearchAnchor.bar(
                   searchController: myController!,
                   viewConstraints: const BoxConstraints(
@@ -302,7 +280,7 @@ class _HomePageState extends State<HomePage> {
               //crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding:  EdgeInsets.all(SizeConfig.blockSizeHorizontal!*1.5),
                   child: TextButton(
                     onPressed: () {
                       filtroScadenza = null;
@@ -316,7 +294,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding:  EdgeInsets.all(SizeConfig.blockSizeHorizontal!*1.5),
                   child: TextButton(
                       onPressed: () {
                         filtroScadenza = Scadenza.oggi;
@@ -328,7 +306,7 @@ class _HomePageState extends State<HomePage> {
                       child: const Text('Oggi')),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding:  EdgeInsets.all(SizeConfig.blockSizeHorizontal!*1.5),
                   child: TextButton(
                       onPressed: () {
                         filtroScadenza = Scadenza.settimana;
@@ -340,7 +318,7 @@ class _HomePageState extends State<HomePage> {
                       child: const Text('Settimana')),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding:  EdgeInsets.all(SizeConfig.blockSizeHorizontal!*1.5),
                   child: TextButton(
                       onPressed: () {
                         filtroScadenza = Scadenza.mese;
@@ -355,7 +333,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               width: double.infinity,
 
-              margin: const EdgeInsets.all(15),
+              margin:  EdgeInsets.all(SizeConfig.blockSizeHorizontal!*2),
               //alignment: ,
               child: Text(
                 'Your Tasks',
@@ -368,8 +346,10 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              width: size.width,
-              height: 500,
+              width: SizeConfig.blockSizeHorizontal!*100,
+             // height: SizeConfig.blockSizeVertical!*100,
+             //!! volevo mettere SizeConfig a height ma se lo faccio 
+             height: 500 ,
               child: content,
             ),
           ],
