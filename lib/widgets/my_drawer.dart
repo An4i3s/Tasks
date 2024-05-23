@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:one_my_tasks/constants/colors.dart';
+import 'package:one_my_tasks/constants/sizes.dart';
 
 // ignore: camel_case_types
+
 class myDrawer extends StatefulWidget {
   const myDrawer({super.key});
 
@@ -35,45 +39,38 @@ class _myDrawerState extends State<myDrawer> {
         username = userData['username'];
      });
     
-     //imageUrl =  userData['image_url'];
-     print('************${authenticatedUser.uid}');
-     print( userData['username']);
-     print('********* ${userData['image_url']}');
   }
 
   @override
   Widget build(BuildContext context) {
 
-  
+  SizeConfig.init(context);
 
-   Future.delayed(Duration.zero);
     return Drawer(
       backgroundColor: kGreenAccent,
       child: ListView(
         children:  [
           DrawerHeader(
             child: Column(
-              children: [
-                //Text('Ciao'),
-                //! The following LateError was thrown building myDrawer(dirty, state: _myDrawerState#180fb):
-                //!LateInitializationError: Field 'username' has not been initialized.
-
-                 Text('Ciao ${username!}'),
-                 const CircleAvatar(
-                 foregroundImage: AssetImage('images/success.png'),
-                
-                //foregroundImage:  NetworkImage(imageUrl),
-
-                ),
-                ListTile(
-                  title: const Text('Exit'),
-                  leading: const Icon(Icons.logout),
+            children: [
+            const CircleAvatar(
+               foregroundImage: AssetImage('images/success.png'),
+              //foregroundImage:  NetworkImage(imageUrl),
+              ),
+              Padding(
+                padding:  EdgeInsets.only(top:  SizeConfig. blockSizeVertical!*1.5),
+                child: Text('Ciao ${username!}!'),
+              ),
+              ListTile(
+                   title:  Text('Exit', style: TextStyle(color: kRed),),
+                   leading:  Icon(Icons.logout, color: kRed,),
                   onTap: () {
-                    FirebaseAuth.instance.signOut();
-                  },
-                ),
-              ],
-            ),
+                       FirebaseAuth.instance.signOut();
+                      },
+             ),
+            ],
+                        ),
+            
           ),
           const ListTile(
             title: Text('Elemento 1'),
