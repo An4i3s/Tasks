@@ -18,19 +18,8 @@ typedef AsyncCallback = Future<void> Function();
 
 
 class MyCustomForm extends StatefulWidget{
-  // late String enteredTitle;
-  // late String enteredDescription;
-  //  late var selectedCategory;
-  // late bool isTaskAdded;
-   //? Trasformare call Back in Future?
-   //Function()? callBackSaveItem;
-   //final AsyncCallback?  callback;
-  //final Future<void> Function()  callback;
-   //final void Function() callback;
+  
    
-    
-   
-   //MyCustomForm({super.key, required this.enteredTitle,required this.enteredDescription, required this.selectedCategory, required this.isTaskAdded ,required this.callback});
    MyCustomForm({super.key});
 
 
@@ -50,8 +39,6 @@ class _MyCustomFormState extends State<MyCustomForm> {
 
   var _selectedScadenza = "mese";
 
-  //final _status = Status.pending;
-
  
    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -68,7 +55,6 @@ class _MyCustomFormState extends State<MyCustomForm> {
    void saveItem() async {
      setState(() {
         _isSending = true;
-        //PROVA
         isTaskAdded= true;
       });
       final url = Uri.https(
@@ -78,11 +64,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
         url,
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
-         // 'name': _enteredTitle,
           'name': _enteredTitle,
           'description': _enteredDescription,
           'category': _selectedCategory?.name,
-          //'status': _status.name,
           'scadenza': _selectedScadenza,
           'done' : false,
         }),
@@ -93,9 +77,22 @@ class _MyCustomFormState extends State<MyCustomForm> {
       print(response.statusCode);
       
      
-   
+   //Prova = togliere questi due If da Async
+//Prova aggiunto context.mounted
+      // if (isTaskAdded && context.mounted) {
+      // //  Navigator.of(context as BuildContext).pushNamed(HomePage.id);
+      // Navigator.popAndPushNamed(context, HomePage.id);
+      //   //Navigator.of(context as BuildContext).pop();
+      // }
 
-      if (isTaskAdded) {
+      // if(!context.mounted){
+      //   return;
+      // }
+     
+  }
+
+  void changeContext(){
+     if (isTaskAdded && context.mounted) {
       //  Navigator.of(context as BuildContext).pushNamed(HomePage.id);
       Navigator.popAndPushNamed(context, HomePage.id);
         //Navigator.of(context as BuildContext).pop();
@@ -104,7 +101,6 @@ class _MyCustomFormState extends State<MyCustomForm> {
       if(!context.mounted){
         return;
       }
-     
   }
 
   @override
@@ -120,7 +116,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 isMultiLine: false,
                 callBackOnChanged: (value){
                   setState(() {
-                                      _enteredTitle= value;
+                    _enteredTitle= value;
 
                   });
                   
@@ -234,7 +230,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   
                     //widget.callback.call();
                     saveItem();
-              
+                    changeContext();
                     showDialog(
                     
                       context: context.mounted ? context : const HomePage().createState().context,

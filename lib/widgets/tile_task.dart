@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:one_my_tasks/constants/colors.dart';
+import 'package:one_my_tasks/constants/sizes.dart';
 
 class TaskTile extends StatelessWidget{
 
@@ -16,8 +17,11 @@ class TaskTile extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
+  SizeConfig.init(context);
+
+
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding:  EdgeInsets.symmetric(vertical:  SizeConfig.blockSizeHorizontal!*2),
       child: Card(
         color: bckColor,
         child: ListTile(

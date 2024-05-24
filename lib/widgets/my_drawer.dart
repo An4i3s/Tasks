@@ -73,7 +73,7 @@ class _myDrawerState extends State<myDrawer> {
               
               ),
               Padding(
-                padding:  EdgeInsets.only(top:  SizeConfig.blockSizeVertical!*1.5),
+                padding:  EdgeInsets.only(top:  SizeConfig.blockSizeVertical!*1.2),
                 child: Text('Ciao ${username!}!'),
               ),
               ListTile(
