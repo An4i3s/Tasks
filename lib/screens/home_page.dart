@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -29,6 +30,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  final authUser = FirebaseAuth.instance.currentUser;
+
+
   int selectedIndex = 0;
   
   String? pressedItemId;
@@ -60,7 +65,7 @@ class _HomePageState extends State<HomePage> {
 
   void _loadItems() async {
     final url =
-        Uri.https('tasks-3b776-default-rtdb.firebaseio.com', 'tasks-list.json');
+        Uri.https('tasks-3b776-default-rtdb.firebaseio.com', 'tasks-list/${authUser!.uid}.json');
     final response = await http.get(url);
 
     //ERROR HANDLING
@@ -82,9 +87,7 @@ class _HomePageState extends State<HomePage> {
     final Map<String, dynamic> listData = json.decode(response.body);
     final List<Tasks> loadedItems = [];
 
-//     E/flutter ( 9520): [ERROR:flutter/runtime/dart_vm_initializer.cc(41)] Unhandled Exception: Bad state: No element
-// E/flutter ( 9520): #0      Iterable.firstWhere (dart:core/iterable.dart:702:5)
-// E/flutter ( 9520): #1      _HomePageState._loadItems (package:one_my_tasks/screens/home_page.dart:86:1
+
 int i =0;
     for (final item in listData.entries) {
       i++;
@@ -127,7 +130,7 @@ int i =0;
     });
 
     final url = Uri.https('tasks-3b776-default-rtdb.firebaseio.com',
-        'tasks-list/${item.id}.json');
+        'tasks-list/${authUser!.uid}/${item.id}.json');
     final response = await http.delete(url);
 
     if (response.statusCode >= 400) {

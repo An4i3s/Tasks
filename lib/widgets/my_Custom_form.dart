@@ -1,5 +1,6 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:one_my_tasks/constants/colors.dart';
@@ -22,13 +23,16 @@ class MyCustomForm extends StatefulWidget{
    
    MyCustomForm({super.key});
 
-
+  
 
   @override
   State<MyCustomForm> createState() => _MyCustomFormState();
 }
 
 class _MyCustomFormState extends State<MyCustomForm> {
+
+  final authUser = FirebaseAuth.instance.currentUser;
+
    String? _enteredTitle = "";
     var _isSending = false;
       bool isTaskAdded = false;
@@ -57,8 +61,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
         _isSending = true;
         isTaskAdded= true;
       });
+      //prova aggiungi sottocartella con id auth user
       final url = Uri.https(
-          'tasks-3b776-default-rtdb.firebaseio.com', 'tasks-list.json');
+          'tasks-3b776-default-rtdb.firebaseio.com', 'tasks-list/${authUser!.uid}.json');
 
       final response = await http.post(
         url,
@@ -88,6 +93,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
       }
 
       if(!context.mounted){
+        setState(() {
+          
+        });
         return;
       }
   }
