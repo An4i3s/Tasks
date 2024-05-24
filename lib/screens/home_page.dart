@@ -169,6 +169,7 @@ int i =0;
   @override
   Widget build(BuildContext context) {
 
+
    SizeConfig.init(context);
 
 

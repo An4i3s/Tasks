@@ -23,7 +23,7 @@ class TaskTile extends StatelessWidget{
 
 
     return Padding(
-      padding:  EdgeInsets.symmetric(vertical:  SizeConfig.blockSizeHorizontal!*2),
+      padding:  EdgeInsets.symmetric(vertical:  SizeConfig.blockSizeVertical!*1, horizontal: SizeConfig.blockSizeHorizontal!*4),
       child: Card(
         color: bckColor,
         child: ListTile(
