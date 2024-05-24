@@ -86,10 +86,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
 
   void changeContext(){
      if (isTaskAdded && context.mounted) {
-      Navigator.popAndPushNamed(context, HomePage.id);
-      setState(() {
+      Navigator.popAndPushNamed(context, HomePage.id).then((value) => setState(() {
         
-      });
+      }));
+      
       }
 
       if(!context.mounted){
