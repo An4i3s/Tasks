@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:one_my_tasks/constants/colors.dart';
+import 'package:one_my_tasks/models/tasks.dart';
+import 'package:one_my_tasks/widgets/update_form.dart';
 
 
 //todo => 1. creare callback funzione onLongPress in taskTile
@@ -9,8 +12,9 @@ class UpdateScreen extends StatefulWidget{
 
   static const String id = 'updateScreenId';
 
-  UpdateScreen({super.key, required this.itemId});
-  String itemId;
+  UpdateScreen({super.key, required this.currentTask});
+//  String itemId;
+  Tasks currentTask;
 
 
 
@@ -24,11 +28,21 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   @override
   Widget build(BuildContext context) {
-     return Column(
-      children: [
-        Text('itemId is = ${widget.itemId}'),
-
-      ],
+     return Scaffold(
+      appBar: AppBar(
+        title: Text('Aggiorna il Task'),
+        backgroundColor: bckColor,
+      ),
+      body:  SingleChildScrollView(
+        child: Column(
+        children: [
+          Text('itemId is = ${widget.currentTask.id}'),
+          UpdateForm(currentTask: widget.currentTask,),
+        ],
+             ),
+      ),
      );
+     
+    
   }
 }

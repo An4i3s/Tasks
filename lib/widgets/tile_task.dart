@@ -37,14 +37,6 @@ class TaskTile extends StatelessWidget{
             child: icon,
           ),
           onLongPress: callBack,
-          // () {
-          //   //!sostituire con callBakc Function. StateManagement se ne occupa HomePage
-          //   Navigator.of(context).push(
-          //     MaterialPageRoute(
-          //       builder: (context) => UpdateScreen(itemId: itemId),
-          //       ),
-          //   );
-          // },
         ),
       ),
     );

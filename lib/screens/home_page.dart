@@ -49,11 +49,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    
     super.initState();
     myController=SearchController();
-    
     _loadItems();
+
     
+  
   }
 
   void _loadItems() async {
@@ -80,7 +82,13 @@ class _HomePageState extends State<HomePage> {
     final Map<String, dynamic> listData = json.decode(response.body);
     final List<Tasks> loadedItems = [];
 
+//     E/flutter ( 9520): [ERROR:flutter/runtime/dart_vm_initializer.cc(41)] Unhandled Exception: Bad state: No element
+// E/flutter ( 9520): #0      Iterable.firstWhere (dart:core/iterable.dart:702:5)
+// E/flutter ( 9520): #1      _HomePageState._loadItems (package:one_my_tasks/screens/home_page.dart:86:1
+int i =0;
     for (final item in listData.entries) {
+      i++;
+      print('*****$i');
       final category = categories.entries
           .firstWhere((catItem) => catItem.value.name == item.value['category'])
           .value;
@@ -217,7 +225,7 @@ class _HomePageState extends State<HomePage> {
             callBack: () {
              Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => UpdateScreen(itemId: _displayTasks[index].id),
+                builder: (context) => UpdateScreen(currentTask: _displayTasks[index]),
                 ),
             );
             },
