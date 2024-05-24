@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:one_my_tasks/constants/colors.dart';
 import 'package:one_my_tasks/constants/sizes.dart';
+import 'package:one_my_tasks/screens/update_screen.dart';
 
 class TaskTile extends StatelessWidget{
 
@@ -8,9 +9,10 @@ class TaskTile extends StatelessWidget{
   late String description;
   late Color bckColor;
   late Icon icon;
+  Function()? callBack;
   //late String status;
 
-  TaskTile({super.key, required this.title, required this.description, required this.bckColor, required this.icon, });
+  TaskTile({super.key, required this.title, required this.description, required this.bckColor, required this.icon, required this.callBack });
 
 
 
@@ -34,7 +36,15 @@ class TaskTile extends StatelessWidget{
           leading: CircleAvatar(
             child: icon,
           ),
-          
+          onLongPress: callBack,
+          // () {
+          //   //!sostituire con callBakc Function. StateManagement se ne occupa HomePage
+          //   Navigator.of(context).push(
+          //     MaterialPageRoute(
+          //       builder: (context) => UpdateScreen(itemId: itemId),
+          //       ),
+          //   );
+          // },
         ),
       ),
     );

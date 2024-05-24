@@ -8,6 +8,7 @@ import 'package:one_my_tasks/screens/auth.dart';
 import 'package:one_my_tasks/screens/home_page.dart';
 import 'package:flutter/services.dart';
 import 'package:one_my_tasks/screens/splash_screen.dart';
+import 'package:one_my_tasks/screens/update_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,6 +57,7 @@ class MainApp extends StatelessWidget {
       routes:  {
         AddTaskScreen.id:(context) => const AddTaskScreen(),
         HomePage.id:(context) => const HomePage(),
+        //UpdateScreen.id:(context) =>  UpdateScreen(),
       },
       //theme: //?,
     );

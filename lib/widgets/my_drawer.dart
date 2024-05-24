@@ -68,6 +68,7 @@ class _myDrawerState extends State<myDrawer> {
             child: Column(
             children: [
              CircleAvatar(
+              //SharedPereferences (validazione cache login/data)
               
               backgroundImage:  NetworkImage(imageUrl!),
               

@@ -6,6 +6,7 @@ import 'package:one_my_tasks/constants/sizes.dart';
 import 'package:one_my_tasks/constants/widgets_styles.dart';
 import 'package:one_my_tasks/data/category_data.dart';
 import 'package:one_my_tasks/models/tasks.dart';
+import 'package:one_my_tasks/screens/update_screen.dart';
 import 'package:one_my_tasks/widgets/my_bottom_navbar.dart';
 import 'package:one_my_tasks/widgets/my_drawer.dart';
 import 'package:one_my_tasks/widgets/tile_task.dart';
@@ -29,7 +30,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
- 
+  
+  String? pressedItemId;
  
 
   List<Tasks> _displayTasks = [];
@@ -102,6 +104,7 @@ class _HomePageState extends State<HomePage> {
     }
     setState(() {
       _tasksItems = loadedItems;
+      
     
     });
     print('GET METHOD = ');
@@ -130,7 +133,6 @@ class _HomePageState extends State<HomePage> {
 
   Iterable<Widget> getSuggestions(SearchController controller) {
     final String input = controller.value.text;
-   // staCercando = true;
 
     _searchList =
         _tasksItems.where((element) => element.title.contains(input)).toList();
@@ -212,6 +214,13 @@ class _HomePageState extends State<HomePage> {
             description: _displayTasks[index].description,
             bckColor: _displayTasks[index].taskCategory.categoryColor,
             icon: _displayTasks[index].taskCategory.categoryIcon,
+            callBack: () {
+             Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => UpdateScreen(itemId: _displayTasks[index].id),
+                ),
+            );
+            },
           ),
         ),
       );
@@ -347,9 +356,8 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(
               width: SizeConfig.blockSizeHorizontal!*100,
-             // height: SizeConfig.blockSizeVertical!*100,
-             //!! volevo mettere SizeConfig a height ma se lo faccio 
-             height: 500 ,
+             
+             height: SizeConfig.blockSizeVertical!*60,
               child: content,
             ),
           ],
