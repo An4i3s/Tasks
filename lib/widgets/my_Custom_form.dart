@@ -77,25 +77,14 @@ class _MyCustomFormState extends State<MyCustomForm> {
       print(response.statusCode);
       
      
-   //Prova = togliere questi due If da Async
-//Prova aggiunto context.mounted
-      // if (isTaskAdded && context.mounted) {
-      // //  Navigator.of(context as BuildContext).pushNamed(HomePage.id);
-      // Navigator.popAndPushNamed(context, HomePage.id);
-      //   //Navigator.of(context as BuildContext).pop();
-      // }
-
-      // if(!context.mounted){
-      //   return;
-      // }
-     
   }
 
   void changeContext(){
      if (isTaskAdded && context.mounted) {
-      //  Navigator.of(context as BuildContext).pushNamed(HomePage.id);
       Navigator.popAndPushNamed(context, HomePage.id);
-        //Navigator.of(context as BuildContext).pop();
+      setState(() {
+        
+      });
       }
 
       if(!context.mounted){
