@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,17 +35,19 @@ class _HomePageState extends State<HomePage> {
   final authUser = FirebaseAuth.instance.currentUser;
 
 
+   
+
   int selectedIndex = 0;
   
   String? pressedItemId;
- 
+
 
   List<Tasks> _displayTasks = [];
   List<Tasks> _tasksItems = [];
 
   Scadenza? filtroScadenza;
   List<Tasks> _searchList = [];
-   String? parolaCercata;
+  String? parolaCercata;
 
 
   SearchController? myController;
@@ -52,12 +55,29 @@ class _HomePageState extends State<HomePage> {
   var _isLoading = true;
   String? _error;
 
+
+    var userData;
+    
+   String? username = ' ';
+    String? imageUrl = '';
+
+    void getUserData() async{
+    userData = await FirebaseFirestore.instance.collection('users').doc(authUser!.uid).get();
+    // print('********* ${userData['username']}');
+     setState(() {
+        username = userData['username'];
+        imageUrl =  userData['image_url'];
+     });
+    
+  }
+
   @override
   void initState() {
     
     super.initState();
     myController=SearchController();
     _loadItems();
+    getUserData();
 
     
   
@@ -227,7 +247,7 @@ int i =0;
             bckColor: _displayTasks[index].taskCategory.categoryColor,
             icon: _displayTasks[index].taskCategory.categoryIcon,
             callBack: () {
-             Navigator.of(context).push(
+              Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => UpdateScreen(currentTask: _displayTasks[index]),
                 ),
@@ -251,7 +271,7 @@ int i =0;
         scrolledUnderElevation: 0,
       ),
       bottomNavigationBar: MyBottomNavBar(selectedIndex: 0),
-      drawer:   const myDrawer(),
+      drawer:    myDrawer(username: username!, imageUrl: imageUrl!,),
       body: SingleChildScrollView(
         child: Column(
           children: [
