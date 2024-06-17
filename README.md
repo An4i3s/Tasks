@@ -18,7 +18,6 @@ A simple TO DO app made with Flutter.
  - Create and Modify Todos
  - Sort Todos by deadline
 
-### instllation and dependencies
 
 
 
