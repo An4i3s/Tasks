@@ -105,9 +105,6 @@ class _UpdateFormState extends State<UpdateForm> {
 
   @override
   Widget build(BuildContext context) {
-    print('*************${widget.currentTask.title}');
-
-    // selectedCategory = categories.entries.where((element) => element.value.name == widget.currentTask.taskCategory.toString()).toString();
 
     return SingleChildScrollView(
       child: Form(

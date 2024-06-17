@@ -36,7 +36,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       body:  SingleChildScrollView(
         child: Column(
         children: [
-          Text('itemId is = ${widget.currentTask.id}'),
           UpdateForm(currentTask: widget.currentTask,),
         ],
              ),

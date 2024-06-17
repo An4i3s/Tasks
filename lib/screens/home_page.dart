@@ -251,7 +251,7 @@ int i =0;
         scrolledUnderElevation: 0,
       ),
       bottomNavigationBar: MyBottomNavBar(selectedIndex: 0),
-      drawer:   myDrawer(),
+      drawer:   const myDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
