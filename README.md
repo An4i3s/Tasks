@@ -1,3 +1,10 @@
-# one_my_tasks
+# Tasks
 
-A new Flutter project.
+A simple TO DO app made with Flutter.
+
+
+
+### Credits
+
+Inspiration for Design: 
+https://dribbble.com/shots/22750995-To-do-List-App
