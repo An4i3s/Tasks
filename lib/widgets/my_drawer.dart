@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,9 +7,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:one_my_tasks/constants/colors.dart';
 import 'package:one_my_tasks/constants/sizes.dart';
-import 'package:one_my_tasks/constants/widgets_styles.dart';
-
-// ignore: camel_case_types
 
 
 class myDrawer extends StatefulWidget {
@@ -52,8 +50,8 @@ class _myDrawerState extends State<myDrawer> {
              CircleAvatar(
               //SharedPereferences (validazione cache login/data)
               
-              backgroundImage:  NetworkImage(widget.imageUrl),
-              //NetworkImage(imageUrl!),
+              backgroundImage:  CachedNetworkImageProvider(widget.imageUrl,),
+            
               
               ),
               Padding(

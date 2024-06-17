@@ -258,6 +258,10 @@ int i =0;
       );
     }
 
+    if(_displayTasks.isEmpty){
+      content = Center(child: Text('No tasks with this deadlines', style: kTextStyle,));
+    }
+
     //var size = MediaQuery.of(context).size;
 
     return Scaffold(

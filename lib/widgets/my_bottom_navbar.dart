@@ -45,7 +45,6 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add Task',),
-        BottomNavigationBarItem(icon: Icon(Icons.trending_up), label: 'Progress'),
       ],
       );
   }
