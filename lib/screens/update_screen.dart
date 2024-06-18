@@ -30,7 +30,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   Widget build(BuildContext context) {
      return Scaffold(
       appBar: AppBar(
-        title: Text('Aggiorna il Task'),
+        title: const Text('Aggiorna il Task'),
         backgroundColor: bckColor,
       ),
       body:  SingleChildScrollView(

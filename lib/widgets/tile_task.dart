@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:one_my_tasks/constants/colors.dart';
 import 'package:one_my_tasks/constants/sizes.dart';
-import 'package:one_my_tasks/screens/update_screen.dart';
 
 class TaskTile extends StatelessWidget{
 

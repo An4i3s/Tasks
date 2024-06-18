@@ -7,7 +7,6 @@ import 'package:one_my_tasks/constants/colors.dart';
 import 'package:one_my_tasks/constants/widgets_styles.dart';
 import 'package:one_my_tasks/data/category_data.dart';
 import 'package:one_my_tasks/models/category_task.dart';
-import 'package:one_my_tasks/models/tasks.dart';
 import 'package:one_my_tasks/screens/home_page.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -21,7 +20,7 @@ typedef AsyncCallback = Future<void> Function();
 class MyCustomForm extends StatefulWidget{
   
    
-   MyCustomForm({super.key});
+   const MyCustomForm({super.key});
 
   
 
@@ -205,7 +204,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
 
 
               Container(
-                margin: EdgeInsets.only(right: 15.0, left: 15, top: 50, bottom: 50),
+                margin: const EdgeInsets.only(right: 15.0, left: 15, top: 50, bottom: 50),
                 width: double.infinity,
                 height: 70,
                 child: TextButton(

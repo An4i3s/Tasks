@@ -15,5 +15,5 @@ Color kRed = const Color.fromRGBO(192, 62, 62, 1);
 Color coloreStudio = const Color.fromRGBO(126, 197, 181, 1);
 Color coloreCasa = const Color.fromRGBO(254, 161, 161, 1);
 Color coloreLavoro = const Color.fromRGBO(232, 190, 252,1 );
-Color coloreBenessere = Color.fromARGB(255, 248, 99, 99);
+Color coloreBenessere = const Color.fromARGB(255, 248, 99, 99);
 Color coloreSvago = const Color.fromRGBO(35, 148, 204, 1);

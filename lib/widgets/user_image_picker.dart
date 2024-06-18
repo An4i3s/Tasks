@@ -47,7 +47,7 @@ class _UserImagePickerState extends State<UserImagePicker>{
           backgroundColor: Colors.grey,
           foregroundImage: _pickeImageFile != null ? FileImage(_pickeImageFile!) : null,
         ),
-        TextButton.icon(onPressed: _pickImage, icon: Icon(Icons.image), label: Text('Add Image', style: TextStyle(
+        TextButton.icon(onPressed: _pickImage, icon: const Icon(Icons.image), label: Text('Add Image', style: TextStyle(
           color: Theme.of(context).primaryColor,
         ),)),
       ],

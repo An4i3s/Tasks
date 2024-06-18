@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:one_my_tasks/constants/colors.dart';
+import 'package:one_my_tasks/constants/constant_strings.dart';
 import 'package:one_my_tasks/constants/sizes.dart';
+import 'package:one_my_tasks/constants/widgets_styles.dart';
+import 'package:one_my_tasks/utility/multiple_languages.dart';
 
 
 class myDrawer extends StatefulWidget {
@@ -22,7 +21,8 @@ class myDrawer extends StatefulWidget {
 
 class _myDrawerState extends State<myDrawer> {
   final authenticatedUser = FirebaseAuth.instance.currentUser!;
-
+  
+  Mutlilanguages multilanguages = Mutlilanguages();
 
 
    @override
@@ -31,7 +31,10 @@ class _myDrawerState extends State<myDrawer> {
     super.initState();
   }
 
-
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
 
 
   @override
@@ -47,7 +50,7 @@ class _myDrawerState extends State<myDrawer> {
           DrawerHeader(
             child: Column(
             children: [
-             CircleAvatar(
+              CircleAvatar(
               //SharedPereferences (validazione cache login/data)
               
               backgroundImage:  CachedNetworkImageProvider(widget.imageUrl,),
@@ -60,17 +63,43 @@ class _myDrawerState extends State<myDrawer> {
                 child: Text('Ciao ${widget.username}!'),
               ),
               ListTile(
-                   title:  Text('Exit', style: TextStyle(color: kRed, fontWeight: FontWeight.bold),),
-                   leading:  Icon(Icons.logout, color: kRed,),
+                    title:  Text('Exit', style: TextStyle(color: kRed, fontWeight: FontWeight.bold),),
+                    leading:  Icon(Icons.logout, color: kRed,),
                   onTap: () {
-                       FirebaseAuth.instance.signOut();
+                        FirebaseAuth.instance.signOut();
                       },
-             ),
+              ),
+              
             ],
                         ),
             
           ),
-       
+        ListTile(
+              title: Text(Mutlilanguages.of(context)!.translate(Constants.introduceLabel),
+              //title: Text(Mutlilanguages.of(context)!.translate('introduce'),
+              style: const TextStyle(fontSize: 32),
+              ),
+              
+              ),
+              TextButton(
+                onPressed: () async{
+                  if(await multilanguages.readLocaleKey() == 'it'){
+                      setState(() {
+                        multilanguages.setLocale(context, const Locale('en', 'EN'));
+                      });
+                      print('°°°°°°°°°°°°°°°°TEXT BUTTON PRESSED');
+                    
+                    
+                  }else{
+                    setState(() {
+                      multilanguages.setLocale(context, const Locale.fromSubtags(languageCode: 'it'));
+                        print('°°°°°°°°°°°°°°°°TEXT BUTTON PRESSED');
+                    });
+                    
+                  }
+                }, 
+                style: kStyleTxtBtnTheme.style,
+                child: const Text('change language'),),
         ],
       ),
     );

@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:one_my_tasks/constants/colors.dart';
+import 'package:one_my_tasks/constants/constant_strings.dart';
 import 'package:one_my_tasks/constants/sizes.dart';
 import 'package:one_my_tasks/constants/widgets_styles.dart';
 import 'package:one_my_tasks/data/category_data.dart';
 import 'package:one_my_tasks/models/tasks.dart';
 import 'package:one_my_tasks/screens/update_screen.dart';
+import 'package:one_my_tasks/utility/multiple_languages.dart';
 import 'package:one_my_tasks/widgets/my_bottom_navbar.dart';
 import 'package:one_my_tasks/widgets/my_drawer.dart';
 import 'package:one_my_tasks/widgets/tile_task.dart';
@@ -193,8 +193,8 @@ int i =0;
    SizeConfig.init(context);
 
 
-    Widget content = const Center(
-      child: Text('No items added yet'),
+    Widget content =  Center(
+      child: Text(Mutlilanguages.of(context)!.translate(Constants.noItemsAddedLabel)),
     );
 
 
@@ -259,10 +259,9 @@ int i =0;
     }
 
     if(_displayTasks.isEmpty){
-      content = Center(child: Text('No tasks with this deadlines', style: kTextStyle,));
+      content = Center(child: Text(Mutlilanguages.of(context)!.translate(Constants.noItemDeadline), style: kTextStyle,));
     }
 
-    //var size = MediaQuery.of(context).size;
 
     return Scaffold(
       extendBody: true,
@@ -312,7 +311,7 @@ int i =0;
 
                     if(context.mounted && myController!.isOpen){
                       Navigator.pop(context);
-                     
+                      
                       }
                     
                   },
@@ -333,8 +332,8 @@ int i =0;
                     },
                     style: TextButton.styleFrom(
                         backgroundColor: kPink, foregroundColor: Colors.white),
-                    child: const Text(
-                      'Tutti',
+                    child:  Text(
+                      Mutlilanguages.of(context)!.translate(Constants.allLabel),
                     ),
                   ),
                 ),
@@ -348,7 +347,7 @@ int i =0;
                       style: TextButton.styleFrom(
                           backgroundColor: kGreen,
                           foregroundColor: Colors.white),
-                      child: const Text('Oggi')),
+                      child:  Text(Mutlilanguages.of(context)!.translate(Constants.todayLabel),),),
                 ),
                 Padding(
                   padding:  EdgeInsets.all(SizeConfig.blockSizeHorizontal!*1.5),
@@ -360,7 +359,7 @@ int i =0;
                       style: TextButton.styleFrom(
                           backgroundColor: kBlue,
                           foregroundColor: Colors.white),
-                      child: const Text('Settimana')),
+                      child:  Text(Mutlilanguages.of(context)!.translate(Constants.weekLabel))),
                 ),
                 Padding(
                   padding:  EdgeInsets.all(SizeConfig.blockSizeHorizontal!*1.5),
@@ -371,7 +370,7 @@ int i =0;
                       },
                       style: TextButton.styleFrom(
                           backgroundColor: kRed, foregroundColor: Colors.white),
-                      child: const Text('Mese')),
+                      child: Text(Mutlilanguages.of(context)!.translate(Constants.monthLabel))),
                 ),
               ],
             ),
@@ -392,8 +391,8 @@ int i =0;
             ),
             SizedBox(
               width: SizeConfig.blockSizeHorizontal!*100,
-             
-             height: SizeConfig.blockSizeVertical!*60,
+              
+              height: SizeConfig.blockSizeVertical!*60,
               child: content,
             ),
           ],

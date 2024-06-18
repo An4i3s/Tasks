@@ -74,8 +74,8 @@ TextButtonThemeData kStyleTxtBtnTheme =  TextButtonThemeData(
 
 ButtonStyle kBtnStyle = ButtonStyle(
  backgroundColor: MaterialStatePropertyAll<Color>(kPink),
-  foregroundColor: MaterialStatePropertyAll<Color>(Colors.white),
-  padding: MaterialStatePropertyAll(EdgeInsets.only(bottom: 25)),
+  foregroundColor: const MaterialStatePropertyAll<Color>(Colors.white),
+  padding: const MaterialStatePropertyAll(EdgeInsets.only(bottom: 25)),
   //textStyle: MaterialStatePropertyAll<TextStyle>(kMenuStyle),
 );
 

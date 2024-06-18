@@ -1,0 +1,10 @@
+{
+    "name": "flutter_tasks",
+    "introduce": "Ciao",
+    "noItemLabel": "Nessun elemento aggiunyo ancora",
+    "noItemDeadline": "Nessun elemento con questa scadenza",
+    "allLabel": "All",
+    "todayLabel": "Today",
+    "weekLabel": "Week",
+    "monthLabel": "Month"
+}
