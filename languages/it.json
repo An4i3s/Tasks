@@ -3,8 +3,8 @@
     "introduce": "Ciao",
     "noItemLabel": "Nessun elemento aggiunyo ancora",
     "noItemDeadline": "Nessun elemento con questa scadenza",
-    "allLabel": "All",
-    "todayLabel": "Today",
-    "weekLabel": "Week",
-    "monthLabel": "Month"
+    "allLabel": "Tutti",
+    "todayLabel": "Oggi",
+    "weekLabel": "Settimana",
+    "monthLabel": "Mese"
 }

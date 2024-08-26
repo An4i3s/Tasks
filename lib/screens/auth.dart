@@ -23,7 +23,6 @@ class _AuthScreenState extends State<AuthScreen> {
   var _enteredEmail = '';
   var _enteredPassword = '';
   File? _selectedImage;
-  //dove viene usata questa variabile?
   var _isAuthenticating = false;
   var _enteredUsername = '';
 

@@ -148,7 +148,6 @@ int i =0;
     setState(() {
       _displayTasks.remove(item);
     });
-
     final url = Uri.https('tasks-3b776-default-rtdb.firebaseio.com',
         'tasks-list/${authUser!.uid}/${item.id}.json');
     final response = await http.delete(url);

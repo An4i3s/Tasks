@@ -6,6 +6,8 @@ import 'package:one_my_tasks/constants/constant_strings.dart';
 import 'package:one_my_tasks/constants/sizes.dart';
 import 'package:one_my_tasks/constants/widgets_styles.dart';
 import 'package:one_my_tasks/utility/multiple_languages.dart';
+import 'package:country_flags/country_flags.dart';
+
 
 
 class myDrawer extends StatefulWidget {
@@ -81,25 +83,22 @@ class _myDrawerState extends State<myDrawer> {
               ),
               
               ),
-              TextButton(
-                onPressed: () async{
-                  if(await multilanguages.readLocaleKey() == 'it'){
-                      setState(() {
-                        multilanguages.setLocale(context, const Locale('en', 'EN'));
-                      });
-                      print('°°°°°°°°°°°°°°°°TEXT BUTTON PRESSED');
-                    
-                    
-                  }else{
-                    setState(() {
+              IconButton(
+                onPressed: (){
+                  setState(() {
+                      multilanguages.setLocale(context, const Locale.fromSubtags(languageCode: 'en'));
+                        print('°°°°°°°°°°°°°°°°TEXT BUTTON PRESSED');
+                    });
+                }, 
+                icon: CountryFlag.fromLanguageCode('en'),),
+                  IconButton(
+                onPressed: (){
+                  setState(() {
                       multilanguages.setLocale(context, const Locale.fromSubtags(languageCode: 'it'));
                         print('°°°°°°°°°°°°°°°°TEXT BUTTON PRESSED');
                     });
-                    
-                  }
                 }, 
-                style: kStyleTxtBtnTheme.style,
-                child: const Text('change language'),),
+                icon: CountryFlag.fromLanguageCode('it'),),
         ],
       ),
     );
